@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shindig/screens/login_screen.dart';
 
 void main() {
   runApp(const AppSetup());
@@ -12,9 +13,7 @@ class AppSetup extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shindig',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: const App(),
     );
   }
@@ -25,6 +24,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const LoginScreen();
   }
 }
