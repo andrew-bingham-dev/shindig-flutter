@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shindig/screens/login_screen.dart';
+import 'package:shindig/screens/home_screen.dart';
 import 'package:shindig/screens/register_screen.dart';
 
 void main() {
@@ -25,6 +25,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RegisterScreen();
+    return const HomeScreen();
   }
 }
