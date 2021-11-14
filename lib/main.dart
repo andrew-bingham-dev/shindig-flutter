@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shindig/screens/login_screen.dart';
+import 'package:shindig/screens/register_screen.dart';
 
 void main() {
   runApp(const AppSetup());
@@ -24,6 +25,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LoginScreen();
+    return const RegisterScreen();
   }
 }
