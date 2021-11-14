@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "534058391168",
+    "project_id": "shindig-80c51",
+    "storage_bucket": "shindig-80c51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534058391168:android:4cb8aa4758985c9dcdf865",
+        "android_client_info": {
+          "package_name": "com.bingham.shindig"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534058391168-0cp32q4m847munk8k2mrin6o17vs6chk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYjtN1dpitt176IkD21EPbVGfVVC_IKsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534058391168-0cp32q4m847munk8k2mrin6o17vs6chk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
