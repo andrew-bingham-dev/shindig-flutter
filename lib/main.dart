@@ -1,21 +1,35 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shindig/screens/home_screen.dart';
+import 'package:shindig/screens/login_screen.dart';
 import 'package:shindig/screens/register_screen.dart';
 
 void main() {
-  runApp(const AppSetup());
+  runApp(AppSetup());
 }
 
-class AppSetup extends StatelessWidget {
-  const AppSetup({Key? key}) : super(key: key);
+class AppSetup extends StatefulWidget {
+  @override
+  State<AppSetup> createState() => _AppSetupState();
+}
 
-  // This widget is the root of your application.
+class _AppSetupState extends State<AppSetup> {
+  final Future<FirebaseApp> _initialisation = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Shindig',
-      theme: ThemeData.dark(),
-      home: const App(),
+    return FutureBuilder(
+      future: _initialisation,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp(
+              title: 'Shindig', theme: ThemeData.dark(), home: const App());
+        }
+        return MaterialApp(
+            title: 'Shindig',
+            theme: ThemeData.dark(),
+            home: const Text('Loading...'));
+      },
     );
   }
 }
@@ -25,6 +39,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeScreen();
+    return const LoginScreen();
   }
 }
