@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shindig/providers/firebase_provider.dart';
 import 'package:shindig/widgets/forms/form_button.dart';
-import 'package:shindig/widgets/forms/form_text_input.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,7 +12,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  void handleLogin() async {
+    try {
+      final UserCredential user = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      print('Email: $email');
+      print('Password: $password');
+      print('User: ${user.additionalUserInfo?.username}');
+    } catch (err) {
+      print('Error: $err');
+    }
+  }
+
+  void handleRegister() {}
+  late String email;
+  late String password;
+
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,23 +45,42 @@ class _LoginScreenState extends State<LoginScreen> {
             Form(
               key: _loginFormKey,
               child: Column(
-                children: const [
-                  FormTextInput(
-                    labelText: 'Email',
-                    hintText: 'Enter your email',
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        label: Text('Email'),
+                        hintText: 'Enter your email',
+                      ),
+                      onChanged: (value) => email = value,
+                    ),
                   ),
-                  FormTextInput(
-                    labelText: 'Password',
-                    hintText: 'Enter your password',
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        label: Text('Password'),
+                        hintText: 'Enter your password',
+                      ),
+                      onChanged: (value) => password = value,
+                    ),
                   ),
                 ],
               ),
             ),
-            const FormButton(
+            FormButton(
               text: 'login',
+              onPressed: handleLogin,
             ),
-            const FormButton(
+            FormButton(
               text: 'register',
+              onPressed: () {},
             ),
           ],
         ),
