@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shindig/screens/contacts_screen.dart';
 import 'package:shindig/screens/events_screen.dart';
@@ -20,7 +19,7 @@ class MainScreen extends StatelessWidget {
           bottom: const TabBar(
             tabs: [
               TabIcon(icon: Icons.home_outlined),
-              TabIcon(icon: Icons.person_outlined),
+              TabIcon(icon: Icons.account_circle_outlined),
               TabIcon(icon: Icons.people_outline),
               TabIcon(icon: Icons.event_outlined),
               TabIcon(icon: Icons.settings_outlined),

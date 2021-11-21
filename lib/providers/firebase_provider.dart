@@ -41,8 +41,8 @@ class FirebaseProvider extends ChangeNotifier {
   }
 
   void updateUserFromFirebase() async {
+    final colRef = _firestore.collection('users');
     if (_auth.currentUser != null) {
-      final colRef = _firestore.collection('users');
       _status = Status.authenticated;
 
       final DocumentSnapshot _userFromFirebase =
@@ -71,5 +71,35 @@ class FirebaseProvider extends ChangeNotifier {
 
       notifyListeners();
     }
+  }
+
+  Future<bool> updateUserProfile(
+      {required String email,
+      required String firstName,
+      required String lastName}) async {
+    if (email == _user.email &&
+        firstName == _user.firstName &&
+        lastName == _user.lastName) {
+      print('No profile data was changed. Skipping update to Firestore');
+      return false;
+    } else {
+      final colRef = _firestore.collection('users');
+      try {
+        await colRef.doc(_user.uid).update(
+            {'email': email, 'firstName': firstName, 'lastName': lastName});
+        if (email != _user.email) {
+          _user.email = email;
+          _auth.currentUser?.updateEmail(email);
+        }
+        _user.firstName = firstName;
+        _user.lastName = lastName;
+
+        notifyListeners();
+        return true;
+      } catch (err) {
+        print('Error trying to save profile data to Firebase: $err');
+      }
+    }
+    return false;
   }
 }

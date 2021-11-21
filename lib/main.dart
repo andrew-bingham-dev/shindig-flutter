@@ -11,6 +11,8 @@ void main() {
 }
 
 class AppSetup extends StatefulWidget {
+  AppSetup({Key? key}) : super(key: key);
+
   @override
   State<AppSetup> createState() => _AppSetupState();
 }
@@ -61,7 +63,7 @@ class App extends StatelessWidget {
             if (_auth.currentUser != null) {
               Provider.of<FirebaseProvider>(context, listen: false)
                   .updateUserFromFirebase();
-              return MainScreen();
+              return const MainScreen();
             }
             print('Connection state: ${snapshot.connectionState}');
             print('Current user: ${_auth.currentUser?.email}');
